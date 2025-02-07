@@ -4,6 +4,41 @@ import json
 from datetime import datetime, timedelta
 from typing import Union
 import os
+import json
+from pathlib import Path
+
+config_data = {
+    "still_video_duration": 0.5,
+    "paths": {
+        "videos": "/Volumes/Space/blinkbridge-1/Blink/videos",
+        "concat": "/Volumes/Space/blinkbridge-1/Blink/concat",
+        "config": "/Volumes/Space/blinkbridge-1/Blink/config"
+    },
+    "cameras": {
+        "enabled": [],
+        "disabled": [],
+        "max_failures": 3,
+        "restart_delay_seconds": 15
+    },
+    "blink": {
+        "login": {
+            "username": "bligava@icloud.com",
+            "password": "gomxi5-qArdoz-dedsip"
+        },
+        "history_days": 90,
+        "poll_interval": 1
+    },
+    "rtsp_server": {
+        "address": "mediamtx",
+        "port": 8555
+    },
+    "log_level": "INFO"
+}
+
+config_path = Path("/Volumes/Space/blinkbridge-1/config/.cred.json")
+
+with config_path.open('w') as config_file:
+    json.dump(config_data, config_file, indent=4)
 
 
 __all__ = ['COMMON_FFMPEG_ARGS', 'CONFIG', 'DELAY_RESTART', 'RTSP_URL', 'PATH_VIDEOS', 'PATH_CONCAT', 'PATH_CONFIG']
